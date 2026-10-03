@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RecoveryBoard + RescueMesh: Citizen Emergency, Recovery & Disaster Response Web Platform. One Web Platform from Emergency SOS to Complete Recovery.">
+  <title>RecoveryBoard + RescueMesh &mdash; Emergency SOS to Complete Recovery</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS (NO Frameworks) -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Relay Banner (Activated when Network = Offline) -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Sticky Header / Navbar -->
+  <div id="global-header"></div>
+
+  <!-- Main Content Container -->
+  <main class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+    
+    <!-- HERO SECTION (Section 10) -->
+    <section class="card" style="
+      background: linear-gradient(135deg, #020617 0%, #0F172A 50%, #1E3A8A 100%);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 3rem 2.5rem;
+      border-radius: var(--radius-xl);
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    ">
+      <div style="max-width: 820px; position: relative; z-index: 2;">
+        
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(220, 38, 38, 0.2); border: 1px solid rgba(220, 38, 38, 0.4); padding: 0.35rem 0.85rem; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 800; font-family: var(--font-mono); color: #FCA5A5; margin-bottom: 1.25rem;">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#EF4444; box-shadow:0 0 8px #EF4444;"></span>
+          <span>CITIZEN EMERGENCY &amp; RECOVERY PLATFORM</span>
+        </div>
+
+        <h1 style="font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 1.25rem; color: white;">
+          Emergency to Recovery &mdash; <br><span style="background: linear-gradient(90deg, #38BDF8, #4ADE80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">One Connected Platform</span>
+        </h1>
+
+        <p style="font-size: clamp(1rem, 2vw, 1.2rem); color: #CBD5E1; line-height: 1.6; margin-bottom: 2rem; font-weight: 500;">
+          Get emergency assistance, discover essential resources, report local problems and track recovery from one platform. Powered by ad-hoc RescueMesh offline relays.
+        </p>
+
+        <!-- Primary Call to Actions -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+          <a href="pages/emergency.html" class="btn btn-emergency btn-xl" style="box-shadow: 0 8px 24px rgba(220, 38, 38, 0.5);">
+            <span>🆘 SEND SOS</span>
+          </a>
+
+          <a href="pages/help.html" class="btn btn-primary btn-xl" style="background: white; color: var(--primary-900);">
+            <span>🆘 I NEED HELP</span>
+          </a>
+
+          <a href="pages/map.html" class="btn btn-secondary btn-xl" style="background: rgba(255, 255, 255, 0.1); color: white; border-color: rgba(255, 255, 255, 0.25);">
+            <span>🗺️ VIEW RECOVERY MAP</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Watermark Decoration -->
+      <div style="position: absolute; right: -40px; bottom: -50px; font-size: 16rem; opacity: 0.04; user-select: none; pointer-events: none; font-weight: 900;">
+        +
+      </div>
+    </section>
+
+    <!-- COMPLETE DISASTER JOURNEY USP (Section 74) -->
+    <section style="margin-bottom: 2.5rem;">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <span class="badge badge-assigned" style="margin-bottom: 0.4rem;">CONNECTED JOURNEY</span>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-900);">
+          One Web Platform from Emergency SOS to Complete Recovery
+        </h2>
+      </div>
+
+      <div class="card" style="padding: 1.5rem; overflow-x: auto;">
+        <div style="display: flex; align-items: center; justify-content: space-between; min-width: 900px; gap: 0.5rem; text-align: center;">
+          
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">🆘</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--emergency-600);">EMERGENCY</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">SOS Beacon</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">📡</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: #0284C7;">RESCUEMESH</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Ad-Hoc Relay</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">🚑</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--emergency-600);">RESCUE</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">NDRF Squads</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">📝</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--navy-800);">REPORT</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Hazard Geo-Tag</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">🔎</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: #7C3AED;">VERIFY</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Control Room</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">👥</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--warning-600);">ASSIGN</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Team Dispatch</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">👷</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--warning-600);">WORKING</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Active Clearance</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">📸</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: #0891B2;">PROOF</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Before / After</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">✅</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--success-600);">RESOLVE</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Certified Safe</div>
+          </div>
+          <div style="color: var(--border-subtle); font-weight: 900;">&rarr;</div>
+
+          <div style="flex:1;">
+            <div style="font-size: 1.8rem; margin-bottom: 0.25rem;">👤</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: var(--navy-800);">RECOVERY</div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">Household Restored</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVE RECOVERY AREA SUMMARY SECTION (Section 12) -->
+    <section style="margin-bottom: 2.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.25rem;">
+        <div>
+          <span class="badge badge-critical" style="margin-bottom: 0.4rem;">LIVE SITUATION ROOM</span>
+          <h2 style="font-size: 1.6rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;">
+            Active Recovery Area: Ward 12 Disaster Zone
+          </h2>
+        </div>
+        <a href="pages/dashboard.html" class="btn btn-secondary btn-sm">
+          <span>Operations Console &rarr;</span>
+        </a>
+      </div>
+
+      <!-- Summary KPI Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+        
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Open Reports</span>
+            <div class="kpi-icon" style="background:var(--emergency-50); color:var(--emergency-600);">📝</div>
+          </div>
+          <div class="kpi-value" id="home-kpi-open">12</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge critical">Active</span>
+            <span>Citizen incident tickets</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Teams Working</span>
+            <div class="kpi-icon" style="background:var(--warning-50); color:var(--warning-600);">👷</div>
+          </div>
+          <div class="kpi-value" id="home-kpi-teams">08</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge warning">Deployed</span>
+            <span>NDRF, Road &amp; Grid Squads</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Resources Ready</span>
+            <div class="kpi-icon" style="background:var(--info-50); color:var(--info-600);">💧</div>
+          </div>
+          <div class="kpi-value" id="home-kpi-resources">24</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge neutral">Available</span>
+            <span>Water points, shelters, clinics</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Issues Resolved</span>
+            <div class="kpi-icon" style="background:var(--success-50); color:var(--success-600);">✅</div>
+          </div>
+          <div class="kpi-value" id="home-kpi-resolved">17</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge positive">Verified</span>
+            <span>Cleared &amp; Restored</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Recovery Progress Bar Card -->
+      <div class="card" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+          <div>
+            <h3 style="font-size:1.05rem; font-weight:800; color:var(--primary-900);">
+              Community Recovery Progress
+            </h3>
+            <div style="font-size:0.8rem; color:var(--text-muted);">
+              Calculated across infrastructure restoration tickets and household safety checklists
+            </div>
+          </div>
+          <span style="font-weight:900; font-size:1.5rem; color:var(--navy-800); font-family:var(--font-mono);" id="home-recovery-pct">
+            78%
+          </span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="home-recovery-bar" style="width: 78%;"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- QUICK ACTION TILES (Section 18, 20, 23, 25, 27, 29) -->
+    <section style="margin-bottom: 3rem;">
+      <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-900); margin-bottom: 1.25rem;">
+        Explore Recovery Platform Services
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+        
+        <!-- Tile 1 -->
+        <a href="pages/emergency.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid var(--emergency-600);">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">🆘</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              Emergency SOS Beacon
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Broadcast urgent distress with GPS coordinates and battery telemetry via RescueMesh ad-hoc relay.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:var(--emergency-600);">
+            Launch SOS Interface &rarr;
+          </div>
+        </a>
+
+        <!-- Tile 2 -->
+        <a href="pages/help.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid var(--info-600);">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">💧</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              I Need Help &mdash; Essential Resources
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Find clean drinking water tankers, food kitchens, medical emergency posts, and temporary shelters.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:var(--info-600);">
+            Browse Nearby Resources &rarr;
+          </div>
+        </a>
+
+        <!-- Tile 3 -->
+        <a href="pages/map.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid #8B5CF6;">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">🗺️</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              Interactive Recovery Map
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Visualize closed flooded roads, operational hospital trauma centers, power charging hubs and active rescue alerts.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:#8B5CF6;">
+            Open Map View &rarr;
+          </div>
+        </a>
+
+        <!-- Tile 4 -->
+        <a href="pages/report.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid var(--warning-500);">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">📝</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              Report a Civic Hazard
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Submit photo and GPS reports of submerged roads, uprooted trees, and ruptured water pipes in 5 simple steps.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:var(--warning-600);">
+            Start 5-Step Report &rarr;
+          </div>
+        </a>
+
+        <!-- Tile 5 -->
+        <a href="pages/recovery.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid var(--success-600);">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">📋</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              My Recovery Dashboard
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Track your reported tickets through verified stages and manage your household emergency checklist.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:var(--success-600);">
+            Check My Recovery &rarr;
+          </div>
+        </a>
+
+        <!-- Tile 6 -->
+        <a href="pages/guidance.html" class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-left:4px solid var(--navy-800);">
+          <div>
+            <div style="font-size:2.2rem; margin-bottom:0.75rem;">🧭</div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              Citizen Recovery Guidance
+            </h3>
+            <p style="font-size:0.85rem; color:var(--text-sub); line-height:1.5;">
+              Step-by-step protocols for surveying house damage, reissuing lost Aadhaar/documents, and insurance claims.
+            </p>
+          </div>
+          <div style="margin-top:1.25rem; font-weight:700; font-size:0.85rem; color:var(--navy-800);">
+            Read Recovery Guides &rarr;
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- LATEST VERIFIED UPDATES PREVIEW (Section 23 & 24) -->
+    <section style="margin-bottom: 2.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <div>
+          <span class="badge badge-verified" style="margin-bottom:0.4rem;">OFFICIAL DISPATCH</span>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--primary-900);">
+            Verified Local Bulletins
+          </h2>
+        </div>
+        <a href="pages/updates.html" class="btn btn-secondary btn-sm">
+          <span>View All Updates &rarr;</span>
+        </a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem;" id="homeUpdatesList">
+        <!-- Rendered dynamically by script -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts (Pure Vanilla JS, NO Frameworks) -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Calculate dynamic progress
+      const pct = App.calculateRecoveryProgress();
+      document.getElementById('home-recovery-pct').textContent = `${pct}%`;
+      document.getElementById('home-recovery-bar').style.width = `${pct}%`;
+
+      // Update KPI counters
+      const reports = App.getReports();
+      const open = reports.filter(r => r.status !== 'resolved').length;
+      const resolved = reports.filter(r => r.status === 'resolved').length;
+      const teams = App.getTeams().length;
+      const resources = App.getResources().length;
+
+      document.getElementById('home-kpi-open').textContent = open < 10 ? '0' + open : open;
+      document.getElementById('home-kpi-teams').textContent = teams < 10 ? '0' + teams : teams;
+      document.getElementById('home-kpi-resources').textContent = resources;
+      document.getElementById('home-kpi-resolved').textContent = resolved < 10 ? '0' + resolved : resolved;
+
+      // Render verified updates preview
+      const updates = App.getUpdates().slice(0, 3);
+      const container = document.getElementById('homeUpdatesList');
+      if (container) {
+        container.innerHTML = updates.map(u => `
+          <div class="card" style="padding:1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <span class="badge ${u.statusType === 'danger' ? 'badge-critical' : u.statusType === 'success' ? 'badge-resolved' : 'badge-working'}">
+                ${u.status}
+              </span>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">
+                ${u.timestamp}
+              </span>
+            </div>
+            <h4 style="font-size:1.05rem; font-weight:800; color:var(--primary-900); margin-bottom:0.35rem;">
+              ${u.title}
+            </h4>
+            <p style="font-size:0.82rem; color:var(--text-sub); line-height:1.45; margin-bottom:0.75rem;">
+              ${u.content}
+            </p>
+            <div style="border-top:1px solid var(--border-light); padding-top:0.6rem; display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-muted);">
+              <span>🏢 Source: <strong>${u.source}</strong></span>
+              <span style="color:var(--success-700); font-weight:700;">✓ Verified</span>
+            </div>
+          </div>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

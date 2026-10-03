@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operations Command Dashboard &mdash; RecoveryBoard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body style="background-color: var(--primary-900);">
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <!-- Operations Dashboard Layout (Section 31) -->
+  <div class="dashboard-layout">
+    
+    <!-- SIDEBAR (Section 31) -->
+    <aside class="dashboard-sidebar">
+      <div style="padding: 1.25rem 1rem; border-bottom: 1px solid var(--primary-800); display: flex; align-items: center; gap: 0.5rem;">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--success-500); box-shadow:0 0 8px var(--success-500);"></span>
+        <span style="font-size:0.75rem; font-family:var(--font-mono); font-weight:800; color:#94A3B8; text-transform:uppercase;">
+          Control Center v2.6
+        </span>
+      </div>
+
+      <ul class="sidebar-nav">
+        <li>
+          <a href="#section-kpis" class="sidebar-link active">
+            <span>📊</span>
+            <span>Dashboard Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-sos" class="sidebar-link">
+            <span>🚨</span>
+            <span>Critical SOS Queue</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-reports" class="sidebar-link">
+            <span>📝</span>
+            <span>Incident Reports</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-teams" class="sidebar-link">
+            <span>👥</span>
+            <span>Response Teams</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-impact" class="sidebar-link">
+            <span>⛓️</span>
+            <span>Recovery Impact</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-priority" class="sidebar-link">
+            <span>🎯</span>
+            <span>Recovery Priority</span>
+          </a>
+        </li>
+        <li>
+          <a href="#section-analytics" class="sidebar-link">
+            <span>📈</span>
+            <span>Analytics &amp; Charts</span>
+          </a>
+        </li>
+        <li>
+          <a href="map.html" class="sidebar-link">
+            <span>🗺️</span>
+            <span>Live Recovery Map</span>
+          </a>
+        </li>
+      </ul>
+
+      <div style="margin-top:auto; padding:1.25rem; border-top:1px solid var(--primary-800); font-size:0.75rem; color:#64748B;">
+        Logged as: <strong style="color:white;">Response Coordinator</strong>
+      </div>
+    </aside>
+
+    <!-- MAIN OPERATIONS CONTENT (Section 31) -->
+    <main class="dashboard-main">
+      
+      <!-- Operations Header -->
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-light);" id="section-kpis">
+        <div>
+          <span class="badge badge-critical" style="margin-bottom:0.35rem;">TACTICAL COMMAND &bull; PATNA CENTRAL</span>
+          <h1 style="font-size: 2rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;">
+            Emergency &amp; Recovery Operations Console
+          </h1>
+        </div>
+
+        <div style="display:flex; gap:0.5rem;">
+          <a href="report.html" class="btn btn-primary btn-sm">
+            <span>+ Log Dispatch Ticket</span>
+          </a>
+          <button class="btn btn-secondary btn-sm" onclick="window.location.reload();">
+            <span>🔄 Refresh State</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- TOP KPIS (Section 30) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Total Reports</span>
+            <div class="kpi-icon" style="background:#EFF6FF; color:var(--navy-700);">📝</div>
+          </div>
+          <div class="kpi-value" id="kpi-total-reports">124</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge neutral">All time</span>
+            <span>Logged citizen reports</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Verified</span>
+            <div class="kpi-icon" style="background:#EDE9FE; color:#6D28D9;">🔎</div>
+          </div>
+          <div class="kpi-value" id="kpi-verified-reports">86</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge positive">Vetted</span>
+            <span>Confirmed by operator</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Working</span>
+            <div class="kpi-icon" style="background:#FEF3C7; color:#B45309;">👷</div>
+          </div>
+          <div class="kpi-value" id="kpi-working-reports">32</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge warning">Active</span>
+            <span>Clearance in progress</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-top">
+            <span class="kpi-title">Resolved</span>
+            <div class="kpi-icon" style="background:#DCFCE7; color:var(--success-700);">✅</div>
+          </div>
+          <div class="kpi-value" id="kpi-resolved-reports">54</div>
+          <div class="kpi-meta">
+            <span class="kpi-badge positive">Closed</span>
+            <span>Certified safe &amp; cleared</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ACTIVE SOS OPERATIONS PANEL (Section 32) -->
+      <section style="margin-bottom: 2.5rem;" id="section-sos">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <span class="badge badge-critical" style="margin-bottom:0.25rem;">RESCUEMESH TRIAGE</span>
+            <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900);">
+              Critical Emergency SOS Alerts
+            </h2>
+          </div>
+          <span style="font-size:0.8rem; font-weight:700; color:var(--emergency-600);">
+            Live Distress Queue
+          </span>
+        </div>
+
+        <div id="activeSosPanelList">
+          <!-- Rendered by dashboard.js -->
+        </div>
+      </section>
+
+      <!-- REPORT MANAGEMENT TABLE (Section 33) -->
+      <section style="margin-bottom: 2.5rem;" id="section-reports">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900);">
+              Incident Reports &amp; Recovery Workflow
+            </h2>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">
+              Manage reported tickets through verification, team assignment, work execution, proof, and resolution.
+            </div>
+          </div>
+
+          <!-- Table Search Input -->
+          <div style="position:relative; width:260px;">
+            <input type="text" id="tableSearchInput" class="form-control" placeholder="Search ticket, road, team..." style="padding:0.5rem 0.75rem 0.5rem 2.2rem; font-size:0.82rem;">
+            <span style="position:absolute; left:0.75rem; top:50%; transform:translateY(-50%); font-size:0.85rem; color:var(--text-muted);">🔍</span>
+          </div>
+        </div>
+
+        <!-- Table Filters -->
+        <div style="display:flex; gap:0.4rem; overflow-x:auto; margin-bottom:1rem;">
+          <button class="filter-chip table-filter-btn active" data-status="all">All</button>
+          <button class="filter-chip table-filter-btn" data-status="reported">Reported</button>
+          <button class="filter-chip table-filter-btn" data-status="verified">Verified</button>
+          <button class="filter-chip table-filter-btn" data-status="assigned">Assigned</button>
+          <button class="filter-chip table-filter-btn" data-status="working">Working</button>
+          <button class="filter-chip table-filter-btn" data-status="proof_submitted">Proof Submitted</button>
+          <button class="filter-chip table-filter-btn" data-status="resolved">Resolved</button>
+        </div>
+
+        <!-- Responsive Table Container -->
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Category / Summary</th>
+                <th>Location / Ward</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned Squad</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="reportsTableBody">
+              <!-- Rendered dynamically by dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- RECOVERY IMPACT & DEPENDENCY VIEW (Section 38) -->
+      <section style="margin-bottom: 2.5rem;" id="section-impact">
+        <div class="card" style="padding: 1.75rem 2rem;">
+          
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-light);">
+            <div>
+              <span class="badge badge-assigned" style="margin-bottom:0.25rem;">DECISION SUPPORT</span>
+              <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900);">
+                Recovery Impact &amp; Dependency Visualization
+              </h2>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                Understand how primary physical infrastructure damage cascades into critical service outages.
+              </div>
+            </div>
+
+            <!-- Chain Switcher -->
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-primary btn-sm" id="btnChainTransport">
+                Bailey Road &rarr; Hospital Chain
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btnChainPower">
+                11kV Power Grid &rarr; Water Chain
+              </button>
+            </div>
+          </div>
+
+          <div id="impactGraphDisplay">
+            <!-- Rendered dynamically by dashboard.js -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RECOVERY PRIORITY DECISION SUPPORT (Section 39) -->
+      <section style="margin-bottom: 2.5rem;" id="section-priority">
+        <div style="margin-bottom: 1rem;">
+          <span class="badge badge-verified" style="margin-bottom:0.25rem;">PRIORITY DISPATCH</span>
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900);">
+            Recovery Priority &mdash; Decision Support
+          </h2>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">
+            Ranked infrastructure clearance guidance based on downstream population impact and emergency access.
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+          
+          <div class="card" style="border-left: 4px solid var(--emergency-600); padding: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-900);">
+                🚧 Bailey Road Underpass
+              </h3>
+              <span class="badge badge-critical">IMPACT: HIGH</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 0.75rem;">
+              Affected Services: <strong>3 Critical Services</strong> (PMCH Hospital, Ambulance Transit, Bus Convoy)
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); background: var(--primary-50); padding: 0.5rem; border-radius: var(--radius-sm);">
+              Recommendation: De-water with heavy pumping squad to restore emergency trauma access.
+            </div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--warning-500); padding: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-900);">
+                💡 11kV Substation Boring Canal
+              </h3>
+              <span class="badge badge-high">IMPACT: HIGH</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 0.75rem;">
+              Affected Area: <strong>Large (Wards 10 &amp; 12)</strong> &bull; Water pumping station offline
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); background: var(--primary-50); padding: 0.5rem; border-radius: var(--radius-sm);">
+              Recommendation: Fast-track coil drying to restore drinking water pressurization.
+            </div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--info-600); padding: 1.25rem;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.4rem;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--primary-900);">
+                💧 Kankarbagh Pipeline Rupture
+              </h3>
+              <span class="badge badge-medium">IMPACT: MEDIUM</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 0.75rem;">
+              Affected Area: <strong>Local (30 households)</strong> &bull; Non-potable mix risk
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); background: var(--primary-50); padding: 0.5rem; border-radius: var(--radius-sm);">
+              Recommendation: Stage mobile relief tanker #7 while municipal clamp repairs proceed.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TEAM MANAGEMENT (Section 36) -->
+      <section style="margin-bottom: 2.5rem;" id="section-teams">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900);">
+              Response Teams &amp; Squad Deployment
+            </h2>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">
+              Active municipal and emergency crews dispatched across Ward 12 disaster sector.
+            </div>
+          </div>
+        </div>
+
+        <div id="teamsGridContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+          <!-- Rendered dynamically by dashboard.js -->
+        </div>
+      </section>
+
+      <!-- ANALYTICS CHARTS (Section 40) -->
+      <section style="margin-bottom: 2.5rem;" id="section-analytics">
+        <div class="card" style="padding: 1.75rem 2rem;">
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.35rem;">
+            Operational Analytics &amp; Damage Categorization
+          </h2>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            Breakdown of citizen problem reports by physical infrastructure sector.
+          </div>
+
+          <div id="reportsByCategoryChart">
+            <!-- Rendered dynamically by dashboard.js -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

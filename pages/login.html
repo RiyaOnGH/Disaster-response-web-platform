@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to RecoveryBoard + RescueMesh - Citizen Emergency & Recovery Platform">
+  <title>Log In &mdash; RecoveryBoard + RescueMesh</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="../index.html">Home</a> &gt; <span style="color: var(--navy-800);">Log In</span>
+    </div>
+
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        
+        <!-- Header -->
+        <div class="auth-header">
+          <div class="auth-badge">
+            <span>🔐 CITIZEN &amp; RESPONDER ACCESS</span>
+          </div>
+          <h1 class="auth-title">Welcome Back</h1>
+          <p class="auth-subtitle">
+            Sign in to access your personal recovery tickets, damage reports, and response operations.
+          </p>
+        </div>
+
+        <!-- Quick-Fill Demo Credentials (For Hackathon/Reviewers) -->
+        <div class="demo-accounts-box">
+          <div class="demo-accounts-title">
+            <span>⚡ Demo Quick-Fill Accounts:</span>
+            <span style="font-size:0.68rem; font-family:var(--font-mono); color:var(--text-muted);">ONE-CLICK</span>
+          </div>
+          <div class="demo-account-pills">
+            <button type="button" class="demo-pill-btn" id="demoCitizenBtn" title="Fill Citizen Credentials">
+              <span>👤</span> <span>Citizen (Shikha)</span>
+            </button>
+            <button type="button" class="demo-pill-btn" id="demoRescueBtn" title="Fill Rescue Team Credentials">
+              <span>🚑</span> <span>Rescue Team (Manoj)</span>
+            </button>
+            <button type="button" class="demo-pill-btn" id="demoAdminBtn" title="Fill Authority Credentials">
+              <span>🏢</span> <span>Authority (Control)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" novalidate>
+          
+          <!-- General Alert Box -->
+          <div id="loginAlertBox" style="display:none; padding:0.75rem 1rem; border-radius:var(--radius-md); background:var(--emergency-50); border:1px solid #FCA5A5; color:var(--emergency-700); font-size:0.85rem; font-weight:600; margin-bottom:1.25rem;"></div>
+
+          <!-- Email Field -->
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">
+              Email Address <span class="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="loginEmail" 
+              class="form-control" 
+              placeholder="name@example.com"
+              required 
+              autocomplete="email"
+            >
+            <div class="form-error" id="emailError">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Password Field with Visibility Toggle -->
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <label class="form-label" for="loginPassword" style="margin-bottom:0;">
+                Password <span class="required">*</span>
+              </label>
+              <a href="#" id="forgotPasswordLink" style="font-size:0.78rem; font-weight:700; color:var(--navy-700); text-decoration:none;">
+                Forgot password?
+              </a>
+            </div>
+            
+            <div class="password-input-wrap">
+              <input 
+                type="password" 
+                id="loginPassword" 
+                class="form-control" 
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              >
+              <button type="button" class="password-toggle-btn" id="togglePasswordBtn" title="Toggle password visibility">
+                👁️
+              </button>
+            </div>
+            <div class="form-error" id="passwordError">Password is required.</div>
+          </div>
+
+          <!-- Remember Me & Emergency Notice -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; font-size:0.85rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer; color:var(--text-sub); user-select:none;">
+              <input type="checkbox" id="rememberMeCheckbox" checked style="accent-color:var(--navy-800); width:16px; height:16px;">
+              <span>Remember me on this device</span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-xl btn-block" id="loginSubmitBtn">
+            <span>Log In to RecoveryBoard &rarr;</span>
+          </button>
+
+        </form>
+
+        <!-- Footer Link -->
+        <div style="text-align:center; margin-top:1.75rem; padding-top:1.25rem; border-top:1px solid var(--border-light); font-size:0.88rem; color:var(--text-sub);">
+          Don't have an account? 
+          <a href="register.html" style="font-weight:800; color:var(--navy-800); text-decoration:underline;">
+            Create an account
+          </a>
+        </div>
+
+        <!-- Emergency Note -->
+        <div style="margin-top:1.25rem; text-align:center; font-size:0.75rem; color:var(--text-muted); line-height:1.4;">
+          🆘 Immediate danger? You can still 
+          <a href="emergency.html" style="color:var(--emergency-600); font-weight:800; text-decoration:underline;">
+            Send Emergency SOS
+          </a> 
+          without logging in.
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FORGOT PASSWORD MODAL (Section 9) -->
+  <div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal-container" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3>🔑 Forgot your password?</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.88rem; color:var(--text-sub); line-height:1.5; margin-bottom:1.25rem;">
+          Enter your registered recovery account email address. A password reset link will be simulated.
+        </p>
+
+        <div id="resetFeedbackBox" style="display:none; padding:0.75rem 1rem; border-radius:var(--radius-md); background:#F0FDF4; border:1px solid #BBF7D0; color:var(--success-700); font-size:0.85rem; font-weight:600; margin-bottom:1.25rem;"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="resetEmailInput">Registered Email Address</label>
+          <input type="email" id="resetEmailInput" class="form-control" placeholder="name@example.com">
+          <div class="form-error" id="resetEmailError">Please enter a valid email address.</div>
+        </div>
+
+        <p style="font-size:0.75rem; color:var(--text-muted); font-style:italic;">
+          ℹ️ Demo note: This is a frontend simulation. No actual email will be dispatched.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button class="btn btn-primary" id="sendResetLinkBtn">Send Reset Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const emailInput = document.getElementById('loginEmail');
+      const passInput = document.getElementById('loginPassword');
+      const togglePassBtn = document.getElementById('togglePasswordBtn');
+      const form = document.getElementById('loginForm');
+      const alertBox = document.getElementById('loginAlertBox');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+
+      // Check URL parameters for prefilled email or redirect
+      const urlParams = new URLSearchParams(window.location.search);
+      const prefilledEmail = urlParams.get('email');
+      const redirectUrl = urlParams.get('redirect');
+      if (prefilledEmail) {
+        emailInput.value = prefilledEmail;
+        passInput.focus();
+      }
+
+      // Password visibility toggle
+      togglePassBtn?.addEventListener('click', () => {
+        if (passInput.type === 'password') {
+          passInput.type = 'text';
+          togglePassBtn.textContent = '🙈';
+        } else {
+          passInput.type = 'password';
+          togglePassBtn.textContent = '👁️';
+        }
+      });
+
+      // Quick-fill Demo buttons
+      document.getElementById('demoCitizenBtn')?.addEventListener('click', () => {
+        emailInput.value = 'citizen@recoveryboard.org';
+        passInput.value = 'password123';
+        clearErrors();
+        App.showToast('Prefilled Citizen credentials (Shikha Verma)', 'info');
+      });
+
+      document.getElementById('demoRescueBtn')?.addEventListener('click', () => {
+        emailInput.value = 'rescue@recoveryboard.org';
+        passInput.value = 'password123';
+        clearErrors();
+        App.showToast('Prefilled Rescue Team credentials (Officer Manoj)', 'info');
+      });
+
+      document.getElementById('demoAdminBtn')?.addEventListener('click', () => {
+        emailInput.value = 'admin@recoveryboard.org';
+        passInput.value = 'password123';
+        clearErrors();
+        App.showToast('Prefilled Authority credentials (District Command)', 'info');
+      });
+
+      function clearErrors() {
+        alertBox.style.display = 'none';
+        emailError.classList.remove('visible');
+        passwordError.classList.remove('visible');
+        emailInput.classList.remove('is-invalid');
+        passInput.classList.remove('is-invalid');
+      }
+
+      // Form Submission
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const email = emailInput.value.trim();
+        const password = passInput.value.trim();
+        const rememberMe = document.getElementById('rememberMeCheckbox').checked;
+
+        let hasError = false;
+
+        if (!email || !email.includes('@')) {
+          emailError.classList.add('visible');
+          emailInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (!password) {
+          passwordError.classList.add('visible');
+          passInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Button loading state
+        const submitBtn = document.getElementById('loginSubmitBtn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Verifying credentials...</span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          const result = Auth.login(email, password, rememberMe);
+
+          if (!result.success) {
+            alertBox.textContent = result.message;
+            alertBox.style.display = 'block';
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            return;
+          }
+
+          // Success! Role-based redirect (Section 3)
+          if (redirectUrl) {
+            window.location.href = redirectUrl;
+            return;
+          }
+
+          if (result.role === 'responder' || result.role === 'authority') {
+            window.location.href = './dashboard.html';
+          } else {
+            window.location.href = '../index.html';
+          }
+        }, 400);
+      });
+
+      // Forgot Password Modal
+      document.getElementById('forgotPasswordLink')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('resetFeedbackBox').style.display = 'none';
+        document.getElementById('resetEmailInput').value = emailInput.value || '';
+        App.openModal('forgotPasswordModal');
+      });
+
+      document.getElementById('sendResetLinkBtn')?.addEventListener('click', () => {
+        const resetEmail = document.getElementById('resetEmailInput').value.trim();
+        const resetError = document.getElementById('resetEmailError');
+        const feedbackBox = document.getElementById('resetFeedbackBox');
+
+        if (!resetEmail || !resetEmail.includes('@')) {
+          resetError.classList.add('visible');
+          return;
+        }
+        resetError.classList.remove('visible');
+
+        const result = Auth.sendPasswordReset(resetEmail);
+        feedbackBox.textContent = result.message;
+        feedbackBox.style.display = 'block';
+        App.showToast('✓ Password reset link simulation generated.', 'success');
+      });
+    });
+  </script>
+</body>
+</html>

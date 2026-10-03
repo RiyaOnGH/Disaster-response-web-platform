@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Detail &amp; Proof of Recovery &mdash; RecoveryBoard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container container-narrow" style="padding-top: 2rem; padding-bottom: 4rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="../index.html">Home</a> &gt; <a href="dashboard.html">Reports</a> &gt; <span id="breadcrumb-report-id" style="color: var(--navy-800);">#RB-1042</span>
+    </div>
+
+    <!-- Main Ticket Card (Section 34) -->
+    <div class="card" style="padding: 2rem; margin-bottom: 2rem; background: white;">
+      
+      <!-- Top Title Bar -->
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid var(--border-light);">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+            <span class="badge badge-assigned" id="detail-badge-id">#RB-1042</span>
+            <span class="badge badge-high" id="detail-badge-severity">HIGH SEVERITY</span>
+            <span class="badge badge-working" id="detail-badge-status">WORKING</span>
+          </div>
+          <h1 style="font-size: 1.75rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;" id="detail-title">
+            Bailey Road Underpass Blocked
+          </h1>
+          <div style="font-size: 0.85rem; color: var(--text-sub); margin-top: 0.25rem;">
+            📍 <strong id="detail-location">Bailey Road Flyover Junction</strong> (<span id="detail-ward">Ward 12</span>)
+          </div>
+        </div>
+
+        <div style="text-align:right;">
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Reported By</div>
+          <div style="font-weight: 800; font-size: 0.9rem; color: var(--primary-900);" id="detail-reported-by">Citizen</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);" id="detail-reported-at">14:10 IST</div>
+        </div>
+      </div>
+
+      <!-- RESPONSE WORKFLOW STEPPER (Section 35) -->
+      <div style="margin-bottom: 2rem; background: var(--primary-50); padding: 1.25rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+        <div style="font-size: 0.8rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">
+          Response Lifecycle Progression:
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; position: relative; font-size: 0.75rem; font-weight: 800; text-align: center;">
+          <div class="wf-step" id="wf-reported">
+            <div class="wf-circle">1</div>
+            <span>Reported</span>
+          </div>
+          <div class="wf-step" id="wf-verified">
+            <div class="wf-circle">2</div>
+            <span>Verified</span>
+          </div>
+          <div class="wf-step" id="wf-assigned">
+            <div class="wf-circle">3</div>
+            <span>Assigned</span>
+          </div>
+          <div class="wf-step" id="wf-working">
+            <div class="wf-circle">4</div>
+            <span>Working</span>
+          </div>
+          <div class="wf-step" id="wf-proof_submitted">
+            <div class="wf-circle">5</div>
+            <span>Proof</span>
+          </div>
+          <div class="wf-step" id="wf-resolved">
+            <div class="wf-circle">6</div>
+            <span>Resolved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description & Metadata -->
+      <div style="margin-bottom: 2rem;">
+        <h3 style="font-size: 1rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.5rem;">
+          Citizen Incident Description
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; background: white; padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);" id="detail-desc">
+          -
+        </p>
+      </div>
+
+      <!-- PROOF OF RECOVERY: 3-STAGE COMPARISON (Section 37) -->
+      <div style="margin-bottom: 2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--primary-900);">
+              Photographic Proof of Recovery
+            </h3>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">
+              Tri-stage evidence pipeline: Before &rarr; In-Progress &rarr; Cleared &amp; Restored
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnOpenProofModal">
+            📸 Upload / Inspect Proof
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          
+          <!-- Stage 1: BEFORE -->
+          <div class="card" style="padding: 0.75rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--emergency-600); margin-bottom:0.4rem;">
+              <span>1. BEFORE (Reported)</span>
+              <span>Initial</span>
+            </div>
+            <div style="height: 140px; border-radius: var(--radius-md); overflow: hidden; background: var(--primary-100);">
+              <img id="detail-img-before" src="" alt="Before" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+          </div>
+
+          <!-- Stage 2: WORKING -->
+          <div class="card" style="padding: 0.75rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--warning-600); margin-bottom:0.4rem;">
+              <span>2. WORKING (On-Site)</span>
+              <span>In-Progress</span>
+            </div>
+            <div style="height: 140px; border-radius: var(--radius-md); overflow: hidden; background: var(--primary-100);">
+              <img id="detail-img-working" src="" alt="Working" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+          </div>
+
+          <!-- Stage 3: AFTER -->
+          <div class="card" style="padding: 0.75rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; font-weight:800; color:var(--success-700); margin-bottom:0.4rem;">
+              <span>3. AFTER (Cleared)</span>
+              <span>Verified Safe</span>
+            </div>
+            <div style="height: 140px; border-radius: var(--radius-md); overflow: hidden; background: var(--primary-100);">
+              <img id="detail-img-after" src="" alt="After" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Assigned Team & Contact -->
+      <div style="background: var(--primary-50); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 2rem;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0.75rem;">
+          <div>
+            <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Assigned Response Team</div>
+            <div style="font-weight:900; font-size:1.1rem; color:var(--primary-900);" id="detail-assigned-team">
+              Road Clearance Team Alpha
+            </div>
+            <div style="font-size:0.8rem; color:var(--text-sub); margin-top:0.2rem;" id="detail-team-contact">
+              📞 Contact: +91 94310 88219 (Er. Alok)
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnAssignNewTeam">
+            Change Team Squad
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Workflow Buttons (Section 34) -->
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem; justify-content:flex-end; border-top:1px solid var(--border-light); padding-top:1.5rem;">
+        <button class="btn btn-secondary" id="btnActionVerify">
+          🔎 VERIFY REPORT
+        </button>
+        <button class="btn btn-secondary" id="btnActionStartWork">
+          👷 START WORK
+        </button>
+        <button class="btn btn-secondary" id="btnActionUploadProof">
+          📸 UPLOAD PROOF
+        </button>
+        <button class="btn btn-success btn-lg" id="btnActionMarkResolved">
+          ✅ MARK RESOLVED
+        </button>
+      </div>
+
+      <!-- Activity Timeline Notes -->
+      <div style="margin-top: 2rem; border-top: 1px solid var(--border-light); padding-top: 1.5rem;">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.75rem;">
+          Incident Timeline Log
+        </h4>
+        <div id="detail-notes-log" style="font-size: 0.82rem; color: var(--text-sub); display: flex; flex-direction: column; gap: 0.4rem; font-family: var(--font-mono);">
+          <!-- Populated by script -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- PROOF UPLOAD MODAL (Section 37) -->
+  <div class="modal-overlay" id="proofUploadModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>📸 Upload Proof of Recovery</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--text-sub); margin-bottom:1.25rem;">
+          Attach photographic verification that repair work is underway or concluded.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Working Photo (In Progress)</label>
+          <input type="text" id="modalWorkingPhotoUrl" class="form-control" value="https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">After Photo (Restoration Cleared)</label>
+          <input type="text" id="modalAfterPhotoUrl" class="form-control" value="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=80">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Engineer Clearance Notes</label>
+          <textarea id="modalProofNote" class="form-control" rows="3">Standing water pumped into secondary storm canal. High-water debris removed and road certified dry.</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button class="btn btn-primary" id="modalSubmitProofBtn">Submit Recovery Proof</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ASSIGN TEAM MODAL -->
+  <div class="modal-overlay" id="detailAssignModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>👥 Assign Response Squad</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Select Response Squad</label>
+          <select id="detailSelectTeamDropdown" class="form-control"></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>Cancel</button>
+        <button class="btn btn-primary" id="detailConfirmAssignBtn">Confirm Assignment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Inline Stepper Style Helper -->
+  <style>
+    .wf-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+    .wf-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      transition: all 0.2s;
+    }
+    .wf-step.active .wf-circle {
+      background: var(--navy-700);
+      border-color: var(--navy-700);
+      color: white;
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+    }
+    .wf-step.active {
+      color: var(--navy-900);
+    }
+    .wf-step.completed .wf-circle {
+      background: var(--success-600);
+      border-color: var(--success-600);
+      color: white;
+    }
+  </style>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let reportId = urlParams.get('id') || 'RB-1042';
+      if (!reportId.startsWith('#')) reportId = '#' + reportId;
+
+      let currentReport = App.getReportById(reportId) || App.getReports()[0];
+
+      function renderReportView() {
+        if (!currentReport) return;
+
+        document.getElementById('breadcrumb-report-id').textContent = currentReport.id;
+        document.getElementById('detail-badge-id').textContent = currentReport.id;
+        document.getElementById('detail-badge-severity').textContent = `${currentReport.severity.toUpperCase()} SEVERITY`;
+        document.getElementById('detail-badge-status').textContent = currentReport.status.replace('_', ' ').toUpperCase();
+        document.getElementById('detail-title').textContent = currentReport.title;
+        document.getElementById('detail-location').textContent = currentReport.location;
+        document.getElementById('detail-ward').textContent = currentReport.ward;
+        document.getElementById('detail-reported-by').textContent = currentReport.reportedBy || 'Citizen';
+        document.getElementById('detail-reported-at').textContent = `${currentReport.reportedAt} IST`;
+        document.getElementById('detail-desc').textContent = currentReport.description;
+
+        // Photos
+        const imgBefore = document.getElementById('detail-img-before');
+        const imgWorking = document.getElementById('detail-img-working');
+        const imgAfter = document.getElementById('detail-img-after');
+
+        if (imgBefore) imgBefore.src = currentReport.beforePhoto || currentReport.photoUrl || '';
+        if (imgWorking) imgWorking.src = currentReport.workingPhoto || 'https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80';
+        if (imgAfter) imgAfter.src = currentReport.afterPhoto || 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=80';
+
+        // Team
+        document.getElementById('detail-assigned-team').textContent = currentReport.assignedTeam || 'Pending Assignment';
+        document.getElementById('detail-team-contact').textContent = currentReport.teamContact ? `📞 Contact: ${currentReport.teamContact}` : 'Pending Crew Lead';
+
+        // Workflow Stepper
+        const stepsOrder = ['reported', 'verified', 'assigned', 'working', 'proof_submitted', 'resolved'];
+        const currentIdx = stepsOrder.indexOf(currentReport.status);
+
+        stepsOrder.forEach((st, idx) => {
+          const el = document.getElementById(`wf-${st}`);
+          if (el) {
+            el.className = 'wf-step';
+            if (idx < currentIdx) el.classList.add('completed');
+            else if (idx === currentIdx) el.classList.add('active');
+          }
+        });
+
+        // Notes log
+        const notesLog = document.getElementById('detail-notes-log');
+        if (notesLog) {
+          notesLog.innerHTML = (currentReport.notes || ['Ticket submitted by citizen with GPS location']).map(n => `
+            <div>&bull; ${n}</div>
+          `).join('');
+        }
+      }
+
+      // Action Handlers (Section 34)
+      document.getElementById('btnActionVerify')?.addEventListener('click', () => {
+        App.updateReportStatus(currentReport.id, 'verified', null, 'Verified by Municipal Control Room');
+        currentReport = App.getReportById(currentReport.id);
+        App.showToast(`✓ ${currentReport.id} status updated to VERIFIED`, 'success');
+        renderReportView();
+      });
+
+      document.getElementById('btnActionStartWork')?.addEventListener('click', () => {
+        App.updateReportStatus(currentReport.id, 'working', currentReport.assignedTeam || 'Road Clearance Team Alpha', 'Crews deployed on-site');
+        currentReport = App.getReportById(currentReport.id);
+        App.showToast(`👷 ${currentReport.id} status updated to WORKING`, 'warning');
+        renderReportView();
+      });
+
+      document.getElementById('btnActionUploadProof')?.addEventListener('click', () => {
+        App.openModal('proofUploadModal');
+      });
+      document.getElementById('btnOpenProofModal')?.addEventListener('click', () => {
+        App.openModal('proofUploadModal');
+      });
+
+      document.getElementById('modalSubmitProofBtn')?.addEventListener('click', () => {
+        const wPhoto = document.getElementById('modalWorkingPhotoUrl').value;
+        const aPhoto = document.getElementById('modalAfterPhotoUrl').value;
+        const pNote = document.getElementById('modalProofNote').value;
+
+        App.uploadProof(currentReport.id, wPhoto, aPhoto, pNote);
+        currentReport = App.getReportById(currentReport.id);
+        App.closeModal('proofUploadModal');
+        App.showToast(`📸 Recovery Proof submitted for ${currentReport.id}!`, 'success');
+        renderReportView();
+      });
+
+      document.getElementById('btnActionMarkResolved')?.addEventListener('click', () => {
+        App.updateReportStatus(currentReport.id, 'resolved', null, 'Municipal Engineer signed off: Fully resolved');
+        currentReport = App.getReportById(currentReport.id);
+        App.showToast(`✅ ${currentReport.id} is now FULLY RESOLVED!`, 'success');
+        renderReportView();
+      });
+
+      // Assign Modal
+      document.getElementById('btnAssignNewTeam')?.addEventListener('click', () => {
+        const dropdown = document.getElementById('detailSelectTeamDropdown');
+        if (dropdown) {
+          dropdown.innerHTML = App.getTeams().map(t => `
+            <option value="${t.name}">${t.name} (${t.specialty})</option>
+          `).join('');
+        }
+        App.openModal('detailAssignModal');
+      });
+
+      document.getElementById('detailConfirmAssignBtn')?.addEventListener('click', () => {
+        const team = document.getElementById('detailSelectTeamDropdown').value;
+        App.assignTeamToReport(currentReport.id, team);
+        currentReport = App.getReportById(currentReport.id);
+        App.closeModal('detailAssignModal');
+        App.showToast(`✓ Assigned to ${team}`, 'success');
+        renderReportView();
+      });
+
+      renderReportView();
+    });
+  </script>
+</body>
+</html>

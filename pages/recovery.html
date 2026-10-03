@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Recovery &mdash; Citizen Disaster Dashboard &mdash; RecoveryBoard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="../index.html">Home</a> &gt; <span style="color: var(--navy-800);">My Recovery</span>
+    </div>
+
+    <!-- Heading (Section 27) -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:1rem; margin-bottom:2rem;">
+      <div>
+        <span class="badge badge-assigned" style="margin-bottom:0.4rem;">PERSONAL CITIZEN DASHBOARD</span>
+        <h1 style="font-size: 2.2rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;">
+          My Recovery &amp; Household Resilience
+        </h1>
+        <p style="font-size: 0.95rem; color: var(--text-sub);">
+          Track your submitted damage tickets, monitor response team clearance, and complete household safety steps.
+        </p>
+      </div>
+
+      <a href="report.html" class="btn btn-primary btn-md">
+        <span>+ Report New Problem</span>
+      </a>
+    </div>
+
+    <!-- Overall Progress & Stat Cards (Section 27) -->
+    <div class="card" style="padding: 1.75rem 2rem; margin-bottom: 2rem; background: white;">
+      
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+        <div>
+          <h2 style="font-size: 1.25rem; font-weight: 900; color: var(--primary-900);">
+            Overall Recovery Completion
+          </h2>
+          <div style="font-size: 0.82rem; color: var(--text-muted);">
+            Composite metric based on verified municipal task resolutions and completed household recovery checklist actions.
+          </div>
+        </div>
+        <div style="font-size: 2rem; font-weight: 900; color: var(--navy-800); font-family: var(--font-mono);" id="myRecoveryProgressPercent">
+          80%
+        </div>
+      </div>
+
+      <!-- Large Progress Bar -->
+      <div class="progress-bar-wrap" style="height: 14px; margin-bottom: 1.5rem;">
+        <div class="progress-bar-fill" id="myRecoveryProgressBar" style="width: 80%;"></div>
+      </div>
+
+      <!-- 3 Metrics Breakdown -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; border-top: 1px solid var(--border-light); padding-top: 1.25rem;">
+        
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #EFF6FF; color: var(--navy-700); font-size: 1.25rem; display: flex; align-items: center; justify-content: center; font-weight: 900;">
+            📝
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Open Reports</div>
+            <div style="font-size: 1.5rem; font-weight: 900; color: var(--primary-900); font-family: var(--font-mono);" id="countOpenReports">3</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #DCFCE7; color: var(--success-700); font-size: 1.25rem; display: flex; align-items: center; justify-content: center; font-weight: 900;">
+            ✅
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Resolved</div>
+            <div style="font-size: 1.5rem; font-weight: 900; color: var(--success-700); font-family: var(--font-mono);" id="countResolvedReports">7</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background: #FEF3C7; color: var(--warning-700); font-size: 1.25rem; display: flex; align-items: center; justify-content: center; font-weight: 900;">
+            ⏳
+          </div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Pending Triage</div>
+            <div style="font-size: 1.5rem; font-weight: 900; color: var(--warning-700); font-family: var(--font-mono);" id="countPendingReports">2</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Main Grid: 2 Columns (Report Tasks on Left, Checklist on Right) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem;">
+      
+      <!-- LEFT: Recovery Task Cards (Section 28) -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-900);">
+            My Reported Incidents &amp; Tasks
+          </h2>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Live Sync</span>
+        </div>
+
+        <div id="myReportTasksList" style="display: flex; flex-direction: column; gap: 1rem;">
+          <!-- Rendered dynamically by recovery.js -->
+        </div>
+      </div>
+
+      <!-- RIGHT: Household Recovery Checklist (Interactive Toggles) -->
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--primary-900);">
+            Household Recovery Checklist
+          </h2>
+          <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Interactive Toggles</span>
+        </div>
+
+        <div id="recoveryChecklistContainer">
+          <!-- Rendered dynamically by recovery.js -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/recovery.js"></script>
+</body>
+</html>

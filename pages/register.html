@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register for RecoveryBoard + RescueMesh - Citizen Emergency & Recovery Platform">
+  <title>Create Account &mdash; RecoveryBoard + RescueMesh</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="../index.html">Home</a> &gt; <span style="color: var(--navy-800);">Create Account</span>
+    </div>
+
+    <div class="auth-wrapper">
+      <div class="auth-card auth-card-wide">
+        
+        <!-- Header -->
+        <div class="auth-header">
+          <div class="auth-badge">
+            <span>📝 NEW CITIZEN / RESPONDER REGISTRATION</span>
+          </div>
+          <h1 class="auth-title">Create an Account</h1>
+          <p class="auth-subtitle">
+            Join the municipal disaster response network to track damage restoration, request relief resources, and receive localized emergency bulletins.
+          </p>
+        </div>
+
+        <!-- Registration Form (Section 1) -->
+        <form id="registerForm" novalidate>
+          
+          <!-- General Alert Box -->
+          <div id="registerAlertBox" style="display:none; padding:0.75rem 1rem; border-radius:var(--radius-md); background:var(--emergency-50); border:1px solid #FCA5A5; color:var(--emergency-700); font-size:0.85rem; font-weight:600; margin-bottom:1.25rem;"></div>
+
+          <!-- Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="regName">
+              Full Name <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="regName" 
+              class="form-control" 
+              placeholder="e.g. Priya Sharma"
+              required 
+              autocomplete="name"
+            >
+            <div class="form-error" id="nameError">Full name is required.</div>
+          </div>
+
+          <!-- Two-Column Row: Email & Phone -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+            
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label" for="regEmail">
+                Email Address <span class="required">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="regEmail" 
+                class="form-control" 
+                placeholder="priya@example.com"
+                required 
+                autocomplete="email"
+              >
+              <div class="form-error" id="regEmailError">Please enter a valid email address.</div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label class="form-label" for="regPhone">
+                Phone Number <span class="required">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="regPhone" 
+                class="form-control" 
+                placeholder="+91 98765 43210"
+                required 
+                autocomplete="tel"
+              >
+              <div class="form-error" id="phoneError">Valid phone number is required.</div>
+            </div>
+
+          </div>
+
+          <!-- Role Selection (Section 1) -->
+          <div class="form-group">
+            <label class="form-label" for="regRole">
+              Account Role <span class="required">*</span>
+            </label>
+            <select id="regRole" class="form-control" style="font-weight:600;">
+              <option value="citizen" selected>👤 Citizen &bull; Household Relief &amp; Hazard Reporting</option>
+              <option value="responder">🚑 Rescue / Response Team &bull; Field Squad Operations</option>
+              <option value="authority">🏢 Authority / Admin &bull; Control Room &amp; Resource Dispatch</option>
+            </select>
+            <div class="form-hint">
+              Select the operational role appropriate for your disaster response participation.
+            </div>
+          </div>
+
+          <!-- Disaster Ward / Sector -->
+          <div class="form-group">
+            <label class="form-label" for="regWard">
+              Disaster Ward / Locality
+            </label>
+            <input 
+              type="text" 
+              id="regWard" 
+              class="form-control" 
+              value="Ward 12, Kankarbagh" 
+              placeholder="e.g. Ward 12, Ward 10, Bailey Road"
+            >
+          </div>
+
+          <!-- Two-Column Row: Password & Confirm Password -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+            
+            <!-- Password -->
+            <div class="form-group">
+              <label class="form-label" for="regPassword">
+                Password <span class="required">*</span>
+              </label>
+              <div class="password-input-wrap">
+                <input 
+                  type="password" 
+                  id="regPassword" 
+                  class="form-control" 
+                  placeholder="Min 6 characters"
+                  required 
+                  autocomplete="new-password"
+                >
+                <button type="button" class="password-toggle-btn" id="toggleRegPassBtn" title="Toggle password visibility">
+                  👁️
+                </button>
+              </div>
+              <div class="form-error" id="passError">Password must be at least 6 characters.</div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+              <label class="form-label" for="regConfirmPassword">
+                Confirm Password <span class="required">*</span>
+              </label>
+              <div class="password-input-wrap">
+                <input 
+                  type="password" 
+                  id="regConfirmPassword" 
+                  class="form-control" 
+                  placeholder="Repeat password"
+                  required 
+                  autocomplete="new-password"
+                >
+                <button type="button" class="password-toggle-btn" id="toggleRegConfirmBtn" title="Toggle password visibility">
+                  👁️
+                </button>
+              </div>
+              <div class="form-error" id="confirmPassError">Passwords do not match.</div>
+            </div>
+
+          </div>
+
+          <!-- Terms acceptance -->
+          <div style="margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.45;">
+            By registering, you agree to share verified emergency coordinates with authorized municipal disaster response teams during active crisis events.
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-xl btn-block" id="registerSubmitBtn">
+            <span>Create Account &rarr;</span>
+          </button>
+
+        </form>
+
+        <!-- Footer Link -->
+        <div style="text-align:center; margin-top:1.75rem; padding-top:1.25rem; border-top:1px solid var(--border-light); font-size:0.88rem; color:var(--text-sub);">
+          Already have an account? 
+          <a href="login.html" style="font-weight:800; color:var(--navy-800); text-decoration:underline;">
+            Log in here
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SUCCESS REGISTRATION MODAL -->
+  <div class="modal-overlay" id="regSuccessModal">
+    <div class="modal-container" style="max-width: 460px; text-align: center;">
+      <div class="modal-body" style="padding: 2.5rem 2rem;">
+        <div style="width: 68px; height: 68px; border-radius: 50%; background: #DCFCE7; color: var(--success-600); font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+          ✓
+        </div>
+        <span class="badge badge-resolved" style="margin-bottom: 0.5rem;">REGISTRATION COMPLETE</span>
+        <h3 style="font-size: 1.5rem; font-weight: 900; color: var(--primary-900); margin-bottom: 0.5rem;">
+          Account Created Successfully!
+        </h3>
+        <p style="font-size: 0.9rem; color: var(--text-sub); line-height: 1.5; margin-bottom: 1.5rem;" id="regSuccessMsg">
+          Your demo profile has been saved into the RecoveryBoard database. You can now log in with your credentials.
+        </p>
+        <button class="btn btn-primary btn-lg btn-block" id="proceedToLoginBtn">
+          Proceed to Login &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('registerForm');
+      const nameInput = document.getElementById('regName');
+      const emailInput = document.getElementById('regEmail');
+      const phoneInput = document.getElementById('regPhone');
+      const roleSelect = document.getElementById('regRole');
+      const wardInput = document.getElementById('regWard');
+      const passInput = document.getElementById('regPassword');
+      const confirmInput = document.getElementById('regConfirmPassword');
+
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('regEmailError');
+      const phoneError = document.getElementById('phoneError');
+      const passError = document.getElementById('passError');
+      const confirmPassError = document.getElementById('confirmPassError');
+      const alertBox = document.getElementById('registerAlertBox');
+
+      // Password visibility toggles
+      document.getElementById('toggleRegPassBtn')?.addEventListener('click', () => {
+        if (passInput.type === 'password') {
+          passInput.type = 'text';
+          document.getElementById('toggleRegPassBtn').textContent = '🙈';
+        } else {
+          passInput.type = 'password';
+          document.getElementById('toggleRegPassBtn').textContent = '👁️';
+        }
+      });
+
+      document.getElementById('toggleRegConfirmBtn')?.addEventListener('click', () => {
+        if (confirmInput.type === 'password') {
+          confirmInput.type = 'text';
+          document.getElementById('toggleRegConfirmBtn').textContent = '🙈';
+        } else {
+          confirmInput.type = 'password';
+          document.getElementById('toggleRegConfirmBtn').textContent = '👁️';
+        }
+      });
+
+      function clearErrors() {
+        alertBox.style.display = 'none';
+        nameError.classList.remove('visible');
+        emailError.classList.remove('visible');
+        phoneError.classList.remove('visible');
+        passError.classList.remove('visible');
+        confirmPassError.classList.remove('visible');
+
+        nameInput.classList.remove('is-invalid');
+        emailInput.classList.remove('is-invalid');
+        phoneInput.classList.remove('is-invalid');
+        passInput.classList.remove('is-invalid');
+        confirmInput.classList.remove('is-invalid');
+      }
+
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const role = roleSelect.value;
+        const ward = wardInput.value.trim();
+        const password = passInput.value.trim();
+        const confirmPassword = confirmInput.value.trim();
+
+        let hasError = false;
+
+        if (!name) {
+          nameError.classList.add('visible');
+          nameInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (!email || !email.includes('@')) {
+          emailError.classList.add('visible');
+          emailInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (!phone || phone.length < 6) {
+          phoneError.classList.add('visible');
+          phoneInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (!password || password.length < 6) {
+          passError.classList.add('visible');
+          passInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (password !== confirmPassword) {
+          confirmPassError.classList.add('visible');
+          confirmInput.classList.add('is-invalid');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        const submitBtn = document.getElementById('registerSubmitBtn');
+        const origText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Creating recovery profile...</span>';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+          const result = Auth.register({
+            name,
+            email,
+            phone,
+            password,
+            role,
+            ward
+          });
+
+          if (!result.success) {
+            alertBox.textContent = result.message;
+            alertBox.style.display = 'block';
+            submitBtn.innerHTML = origText;
+            submitBtn.disabled = false;
+            return;
+          }
+
+          // Registration succeeded! Show confirmation modal
+          document.getElementById('regSuccessMsg').textContent = 
+            `Account for ${name} (${role.toUpperCase()}) was successfully created. You can now login.`;
+          App.openModal('regSuccessModal');
+
+          document.getElementById('proceedToLoginBtn')?.addEventListener('click', () => {
+            window.location.href = `./login.html?email=${encodeURIComponent(email)}`;
+          });
+        }, 350);
+      });
+    });
+  </script>
+</body>
+</html>

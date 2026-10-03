@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recovery Map &mdash; Live Disaster Zone Overview &mdash; RecoveryBoard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container-fluid" style="padding: 1.5rem 1.25rem 3rem;">
+    
+    <!-- Header Title -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:1rem; margin-bottom:1.25rem;">
+      <div>
+        <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.25rem;">
+          <a href="../index.html">Home</a> &gt; <span style="color: var(--navy-800);">Recovery Map</span>
+        </div>
+        <h1 style="font-size: 2rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;">
+          Interactive Recovery Map
+        </h1>
+        <p style="font-size: 0.85rem; color: var(--text-sub);">
+          Explore live verified locations of operational water points, shelters, medical trauma clinics, closed flooded routes, and SOS distress alerts.
+        </p>
+      </div>
+
+      <!-- Quick Legend Pill -->
+      <div style="display:flex; flex-wrap:wrap; gap:0.5rem; font-size:0.75rem; font-weight:700;">
+        <span class="badge badge-assigned">💧 Water</span>
+        <span class="badge badge-critical">🏥 Hospital</span>
+        <span class="badge badge-verified">🏠 Shelter</span>
+        <span class="badge badge-high">🍲 Food</span>
+        <span class="badge badge-critical">🚧 Blocked Road</span>
+        <span class="badge badge-working">⚡ Power Hub</span>
+        <span class="badge badge-critical" style="animation:pulseGlow 1.2s infinite;">🆘 SOS Distress</span>
+      </div>
+    </div>
+
+    <!-- Filter Chips Bar (Section 21) -->
+    <div class="filter-bar" id="mapFilterBar">
+      <!-- Populated by map.js -->
+    </div>
+
+    <!-- Simulated Interactive Map Container (Section 20 & 22) -->
+    <div class="map-canvas-container" id="mapCanvasContainer">
+      
+      <!-- Grid Lines Background -->
+      <div class="map-grid-layer"></div>
+
+      <!-- Simulated Terrain: Ganga River / Northern Canal -->
+      <div class="map-water-river">
+        <span style="position:absolute; top:24px; left:30px; font-weight:900; font-size:0.75rem; color:#0369A1; letter-spacing:0.1em; text-transform:uppercase;">
+          🌊 River Corridor &bull; High Water Level Mark
+        </span>
+      </div>
+
+      <!-- Simulated Main Roadways -->
+      <div class="map-road map-road-main" title="Bailey Road Primary Arterial Corridor">
+        <span style="position:absolute; right:20px; top:-18px; font-size:0.7rem; font-weight:800; color:#475569;">
+          Bailey Road Arterial Corridor &rarr;
+        </span>
+      </div>
+      <div class="map-road map-road-cross" title="Ashok Rajpath Central Transit">
+        <span style="position:absolute; top:80px; left:18px; font-size:0.65rem; font-weight:800; color:#475569; writing-mode:vertical-rl;">
+          Ashok Rajpath &darr;
+        </span>
+      </div>
+
+      <!-- District Zone Labels -->
+      <div style="position:absolute; top:35%; left:15%; font-size:0.8rem; font-weight:900; color:rgba(71, 85, 105, 0.4); text-transform:uppercase; letter-spacing:0.15em;">
+        Ward 10 &bull; Boring Canal
+      </div>
+      <div style="position:absolute; top:65%; left:42%; font-size:0.85rem; font-weight:900; color:rgba(71, 85, 105, 0.45); text-transform:uppercase; letter-spacing:0.15em;">
+        Ward 12 &bull; Kankarbagh High Risk Zone
+      </div>
+      <div style="position:absolute; top:32%; right:18%; font-size:0.8rem; font-weight:900; color:rgba(71, 85, 105, 0.4); text-transform:uppercase; letter-spacing:0.15em;">
+        Ward 8 &bull; Hospital Plaza
+      </div>
+
+      <!-- Map Control Buttons (Top Right) -->
+      <div class="map-controls">
+        <button class="map-btn" id="mapZoomIn" title="Zoom In">+</button>
+        <button class="map-btn" id="mapZoomOut" title="Zoom Out">&minus;</button>
+        <button class="map-btn" id="mapRecenter" title="Recenter on Ward 12" style="font-size: 1rem;">📍</button>
+      </div>
+
+      <!-- Dynamic Markers Layer (Section 20) -->
+      <div id="mapPinsContainer">
+        <!-- Rendered by map.js -->
+      </div>
+
+      <!-- Interactive Resource Drawer Card (Section 22) -->
+      <div id="mapResourceDrawer" class="map-resource-drawer" style="display: none;">
+        <!-- Populated on marker click by map.js -->
+      </div>
+
+    </div>
+
+    <!-- Map Info Footer Bar -->
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem; font-size:0.75rem; color:var(--text-muted);">
+      <div>
+        <span>🛰️ GPS Grid Datum: WGS84 (Patna Municipal Bounds) &bull; Coordinates Updated Real-Time</span>
+      </div>
+      <div>
+        <a href="report.html" style="font-weight:700; color:var(--navy-800);">
+          + Pin New Hazard on Map &rarr;
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/map.js"></script>
+</body>
+</html>

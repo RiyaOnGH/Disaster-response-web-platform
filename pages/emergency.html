@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency SOS &amp; RescueMesh Simulation &mdash; RecoveryBoard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Offline Banner -->
+  <div id="offline-banner"></div>
+
+  <!-- Global Header -->
+  <div id="global-header"></div>
+
+  <main class="container container-narrow" style="padding-top: 2rem; padding-bottom: 4rem;">
+    
+    <!-- Breadcrumb -->
+    <div style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1.5rem;">
+      <a href="../index.html">Home</a> &gt; <span style="color: var(--emergency-600);">Emergency SOS</span>
+    </div>
+
+    <!-- STATE 1: SOS TRIGGER SCREEN (Section 13) -->
+    <div id="sos-display-container">
+      
+      <!-- Notice Header -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="badge badge-critical" style="font-size: 0.8rem; padding: 0.35rem 0.85rem; margin-bottom: 0.75rem;">
+          HIGH PRIORITY DISTRESS BEACON
+        </span>
+        <h1 style="font-size: 2.4rem; font-weight: 900; color: var(--primary-900); letter-spacing: -0.02em;">
+          Emergency Assistance SOS
+        </h1>
+        <p style="font-size: 1rem; color: var(--text-sub); max-width: 520px; margin: 0.5rem auto 0;">
+          Press only if you need urgent rescue or medical dispatch. Works over cellular or ad-hoc <strong>RescueMesh</strong> offline relays.
+        </p>
+      </div>
+
+      <!-- Emergency Big SOS Button Section (Section 13 & 14) -->
+      <div class="card" style="text-align: center; padding: 3rem 2rem; margin-bottom: 2rem; background: white; border: 2px solid var(--border-light);">
+        
+        <div style="margin-bottom: 1.5rem;">
+          <button id="triggerSosModalBtn" class="btn btn-emergency" style="
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            font-size: 1.85rem;
+            font-weight: 900;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 36px rgba(220, 38, 38, 0.45);
+            border: 8px solid rgba(254, 202, 202, 0.6);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            letter-spacing: 0.05em;
+          ">
+            <span style="font-size: 3rem; line-height: 1; margin-bottom: 0.25rem;">🆘</span>
+            <span>SEND SOS</span>
+          </button>
+        </div>
+
+        <div style="font-weight: 800; font-size: 1.1rem; color: var(--primary-900); margin-bottom: 0.35rem;">
+          Emergency Assistance
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 360px; margin: 0 auto 1.5rem;">
+          Press only if you or someone nearby is trapped, in danger, or facing immediate life risk.
+        </p>
+
+        <!-- Device Sensor Telemetry Box (Section 13) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; max-width: 600px; margin: 0 auto; background: var(--primary-50); border: 1px solid var(--border-light); padding: 1rem; border-radius: var(--radius-lg);">
+          
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">📍 Location</div>
+            <div style="font-weight: 800; font-size: 0.85rem; color: var(--primary-900);">Ward 12, Plot 42</div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">🔋 Battery</div>
+            <div style="font-weight: 800; font-size: 0.85rem; color: var(--primary-900);" id="telemetry-battery">78%</div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">📶 Network</div>
+            <div style="font-weight: 800; font-size: 0.85rem; color: var(--success-700);" id="telemetry-network">Available</div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">🛰 GPS Satellite</div>
+            <div style="font-weight: 800; font-size: 0.85rem; color: var(--primary-900);">Locked (±4m)</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- STATE 2: RESCUEMESH MULTI-HOP SIMULATION (Section 15 & 55) -->
+    <div id="mesh-simulation-container" style="display: none; margin-bottom: 2rem;">
+      <div class="mesh-container">
+        
+        <!-- Header -->
+        <div class="mesh-header">
+          <div class="mesh-title-area">
+            <span class="mesh-beacon"></span>
+            <div>
+              <h3 style="font-size: 1.1rem; font-weight: 900; color: white;">RescueMesh Ad-Hoc Routing Engine</h3>
+              <div style="font-size: 0.72rem; color: #94A3B8; font-family: var(--font-mono);">
+                BLE 5.0 + Wi-Fi Aware Store-and-Forward Mesh Protocol
+              </div>
+            </div>
+          </div>
+          <span style="background: rgba(6, 182, 212, 0.2); color: #67E8F9; border: 1px solid rgba(6, 182, 212, 0.4); font-size: 0.7rem; font-weight: 800; font-family: var(--font-mono); padding: 0.25rem 0.6rem; border-radius: var(--radius-full); text-transform: uppercase;">
+            DEMO SIMULATION
+          </span>
+        </div>
+
+        <!-- 5 Nodes Pipeline Grid (Section 15) -->
+        <div class="mesh-nodes-grid">
+          
+          <!-- Node 0: SOS Created -->
+          <div class="mesh-node active" id="mesh-node-0">
+            <div class="mesh-node-icon">📱</div>
+            <div class="mesh-node-title">SOS Created</div>
+            <div class="mesh-node-sub">Phone #RB-Client</div>
+            <div class="mesh-node-status">Connected</div>
+            <div class="mesh-connector">&rarr;</div>
+          </div>
+
+          <!-- Node 1: Nearby Device -->
+          <div class="mesh-node" id="mesh-node-1">
+            <div class="mesh-node-icon">📱</div>
+            <div class="mesh-node-title">Nearby Device</div>
+            <div class="mesh-node-sub">Citizen Device #84-B</div>
+            <div class="mesh-node-status">Waiting</div>
+            <div class="mesh-connector">&rarr;</div>
+          </div>
+
+          <!-- Node 2: Mesh Relay -->
+          <div class="mesh-node" id="mesh-node-2">
+            <div class="mesh-node-icon">📡</div>
+            <div class="mesh-node-title">Mesh Relay</div>
+            <div class="mesh-node-sub">Solar Pole #12 (LoRa)</div>
+            <div class="mesh-node-status">Waiting</div>
+            <div class="mesh-connector">&rarr;</div>
+          </div>
+
+          <!-- Node 3: Gateway -->
+          <div class="mesh-node" id="mesh-node-3">
+            <div class="mesh-node-icon">🛰️</div>
+            <div class="mesh-node-title">Connected Gateway</div>
+            <div class="mesh-node-sub">Satellite Uplink BSNL</div>
+            <div class="mesh-node-status">Waiting</div>
+            <div class="mesh-connector">&rarr;</div>
+          </div>
+
+          <!-- Node 4: Rescue Team -->
+          <div class="mesh-node" id="mesh-node-4">
+            <div class="mesh-node-icon">🚑</div>
+            <div class="mesh-node-title">Rescue Team</div>
+            <div class="mesh-node-sub">Patna Control Room</div>
+            <div class="mesh-node-status">Waiting</div>
+          </div>
+
+        </div>
+
+        <!-- Active Step Explainer Banner -->
+        <div style="background: rgba(15, 23, 42, 0.9); border-top: 1px solid var(--primary-800); padding: 0.85rem 1.5rem; font-size: 0.82rem; color: #E2E8F0;" id="meshStepInfo">
+          Broadcasting distress packets across ad-hoc peer nodes...
+        </div>
+
+        <!-- Real-Time Packet Log Console -->
+        <div class="mesh-console" id="meshConsoleOutput">
+          <!-- Populated by emergency.js -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STATE 3: SOS SUCCESS & TRIAGE CONFIRMATION (Section 16) -->
+    <div id="sos-success-container" style="display: none;">
+      
+      <div class="card" style="border: 2px solid var(--success-500); padding: 2.5rem 2rem; background: white; text-align: center; margin-bottom: 2rem;">
+        
+        <div style="width: 72px; height: 72px; border-radius: 50%; background: #DCFCE7; color: var(--success-600); font-size: 2.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+          ✓
+        </div>
+
+        <span class="badge badge-resolved" style="font-size: 0.8rem; padding: 0.35rem 0.85rem; margin-bottom: 0.5rem;">
+          RESCUEMESH ACK RECEIVED
+        </span>
+
+        <h2 style="font-size: 2rem; font-weight: 900; color: var(--primary-900); margin-bottom: 0.5rem;">
+          ✅ SOS RECEIVED
+        </h2>
+        <p style="font-size: 0.9rem; color: var(--text-sub); max-width: 480px; margin: 0 auto 2rem;">
+          Your distress beacon was successfully relayed to the Disaster Control Center. NDRF Rescue Squad has been notified.
+        </p>
+
+        <!-- SOS Incident Ticket Specs (Section 16) -->
+        <div style="background: var(--primary-50); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.5rem; max-width: 500px; margin: 0 auto 2rem; text-align: left;">
+          
+          <div style="display:flex; justify-content:space-between; padding-bottom:0.6rem; border-bottom:1px solid var(--border-light); margin-bottom:0.6rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Emergency ID</span>
+            <span style="font-weight:900; font-family:var(--font-mono); color:var(--emergency-600);" id="success-sos-id">#SOS-1042</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; padding-bottom:0.6rem; border-bottom:1px solid var(--border-light); margin-bottom:0.6rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Location</span>
+            <span style="font-weight:800; color:var(--primary-900);" id="success-sos-location">Ward 12, Plot 42</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; padding-bottom:0.6rem; border-bottom:1px solid var(--border-light); margin-bottom:0.6rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Emergency Type</span>
+            <span style="font-weight:800; color:var(--emergency-600);" id="success-sos-type">Person Trapped</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; padding-bottom:0.6rem; border-bottom:1px solid var(--border-light); margin-bottom:0.6rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Time Logged</span>
+            <span style="font-weight:800; font-family:var(--font-mono); color:var(--primary-900);" id="success-sos-time">14:32</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; padding-bottom:0.6rem; border-bottom:1px solid var(--border-light); margin-bottom:0.6rem;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Status</span>
+            <span class="badge badge-resolved" id="success-sos-status">SOS Received</span>
+          </div>
+
+          <div style="display:flex; justify-content:space-between;">
+            <span style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Assigned Squad</span>
+            <span style="font-weight:800; color:var(--navy-800);" id="success-sos-unit">NDRF Unit 4 - Water Rescue</span>
+          </div>
+
+        </div>
+
+        <!-- Action Buttons (Section 16) -->
+        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+          <a href="map.html?filter=emergency" class="btn btn-primary btn-lg">
+            🗺️ VIEW LOCATION
+          </a>
+          <button class="btn btn-secondary btn-lg" id="contactHelpBtn">
+            📞 CONTACT HELP
+          </button>
+          <a href="../index.html" class="btn btn-ghost btn-lg">
+            RETURN HOME
+          </a>
+          <button class="btn btn-danger-outline btn-lg" id="cancelSosBtn">
+            Deactivate Beacon
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- CONFIRMATION MODAL (Section 14) -->
+  <div class="modal-overlay" id="sosConfirmModal">
+    <div class="modal-container">
+      <div class="modal-header" style="background: var(--emergency-700);">
+        <h3>🚨 SEND EMERGENCY SOS?</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; font-weight: 700; color: var(--primary-900); margin-bottom: 1rem;">
+          Your emergency distress transmission will broadcast the following information:
+        </p>
+
+        <div style="background: var(--emergency-50); border: 1px solid #FCA5A5; border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="margin-bottom: 0.5rem; font-size: 0.85rem;">📍 <strong>Location:</strong> Ward 12, Plot 42 (±4m GPS accuracy)</div>
+          <div style="margin-bottom: 0.5rem; font-size: 0.85rem;">🚨 <strong>Emergency Type:</strong> Urgent Rescue Required</div>
+          <div style="margin-bottom: 0.5rem; font-size: 0.85rem;">🕐 <strong>Current Time:</strong> Live Local Timecode</div>
+          <div style="font-size: 0.85rem;">🔋 <strong>Battery Status:</strong> 78% remaining</div>
+        </div>
+
+        <!-- Emergency Category Radio -->
+        <div class="form-group">
+          <label class="form-label">Nature of Emergency</label>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.85rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="radio" name="emergencyType" value="Person Trapped (Water Ingress)" checked>
+              <span>Person Trapped / Flooding Ingress</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="radio" name="emergencyType" value="Medical Critical Emergency">
+              <span>Medical Emergency (Oxygen / Severe Injury)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; cursor:pointer;">
+              <input type="radio" name="emergencyType" value="Structural Wall / Roof Collapse">
+              <span>Structural Wall / Building Hazard</span>
+            </label>
+          </div>
+        </div>
+
+        <p style="font-size: 0.78rem; color: var(--text-muted); font-style: italic;">
+          ⚠️ RescueMesh will attempt multi-hop peer relay if cellular coverage is unavailable.
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-close-modal>CANCEL</button>
+        <button class="btn btn-emergency btn-lg" id="confirmSosActionBtn">
+          CONFIRM SOS
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT HELP CALL DIALOG MODAL -->
+  <div class="modal-overlay" id="contactHelpModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3>📞 Emergency Dispatch Contact</h3>
+        <button class="modal-close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" style="text-align: center; padding: 2rem 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📻</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; color: var(--primary-900); margin-bottom: 0.5rem;">
+          RescueMesh Audio / Intercom Link
+        </h4>
+        <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 1.5rem;">
+          Connecting distress link to <strong>NDRF Water Rescue Squad #4</strong> on assigned channel <strong>VHF 156.800 MHz</strong>.
+        </p>
+
+        <div style="background: var(--primary-50); border: 1px solid var(--border-light); padding: 1rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 1.5rem;">
+          <div>OPERATOR: "NDRF Team 4 received distress packet. Boat squad is en route to Ward 12, Plot 42."</div>
+        </div>
+
+        <button class="btn btn-primary" data-close-modal>
+          End Intercom
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Footer -->
+  <div id="global-footer"></div>
+
+  <!-- Mobile Bottom Nav -->
+  <div id="mobile-bottom-nav"></div>
+
+  <!-- Scripts -->
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/emergency.js"></script>
+</body>
+</html>
